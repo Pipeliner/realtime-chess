@@ -82,7 +82,7 @@ class GameSettings {
 
     onLevelLoosed() {
         gameManager.stop();
-        alert("loose");
+        alert("You've lost!");
         window.location.href = '?map=map.json';
     }
 }
