@@ -1,12 +1,10 @@
 class PhysicManager {
     update(obj) {
-
-        let nodeNum = k => Math.floor(k / 64);
-        let x = nodeNum(obj.pos_x);
-        let y = nodeNum(obj.pos_y);
+        const tile_size = 64;
 
         gameManager.units.forEach(u => {
-            if (x === nodeNum(u.pos_x) && y === nodeNum(u.pos_y)) {
+            if (Math.sqrt(Math.pow(obj.pos_x - u.pos_x, 2)
+                + Math.pow(obj.pos_y - u.pos_y, 2)) < tile_size / 2) {
                 if (u !== obj) {
                     obj.onTouchEntity(u);
                 }
