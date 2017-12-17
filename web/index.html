@@ -13,7 +13,13 @@
 
 
   <script>
-      var map = "map.json"
+      const tokens = window.location.href.split("=");
+
+      var map;
+      if (tokens.length == 2)
+        map = tokens[1];
+      else
+        map = "map.json"
   </script>
   <script src="/engine/GameSettings.js"></script>
   <script src="/engine/MapManager.js"></script>
