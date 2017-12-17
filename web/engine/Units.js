@@ -142,8 +142,10 @@ var Hero = Unit.extend({
 
     },
 
-    //100% from metoda
-    onTouchEntity: function (obj) {
+    //We can eat enemy pieces!
+    onTouchEntity: function (objectOnAWay) {
+        objectOnAWay.kill();
+        soundManager.play('/music/bom.mp3', {looping: false, volume: 0.2});
     },
 
     //100% from metoda
