@@ -10,7 +10,7 @@ AIAction.START_HUNT_TYPE = 2;
 AIAction.WANDER_THE_MAP_TYPE = 3;
 AIAction.GO_CLOSER_TO_HERO_TYPE = 4;
 AIAction.ATTACK_LEFT_TYPE = 5;
-AIAction.ATTACK_RIGTH_TYPE = 6;
+AIAction.ATTACK_RIGHT_TYPE = 6;
 AIAction.ATTACK_DOWN_TYPE = 7;
 AIAction.ATTACK_UP_TYPE = 8;
 
@@ -58,14 +58,16 @@ class AIManager {
 
         if (enemy.state === UnitConstants.MOVING_STATE) {
             if (this.heroIsCloseToEnemy(hero, enemy)) {
-                    if (Math.abs(hero.pos_x - enemy.pos_x) < this.tile_size) {
+                    const dx = Math.abs(hero.pos_x - enemy.pos_x);
+                    const dy = Math.abs(hero.pos_y - enemy.pos_y);
+                    if (dx < this.tile_size && dx < dy) {
                         if (hero.pos_y < enemy.pos_y)
                             return AIAction.ATTACK_UP;
                         else
                             return AIAction.ATTACK_DOWN;
                     }
 
-                    if (Math.abs(hero.pos_y - enemy.pos_y) < this.tile_size) {
+                    if (dy < this.tile_size) {
                         if (hero.pos_x < enemy.pos_x)
                             return AIAction.ATTACK_LEFT;
                         else
