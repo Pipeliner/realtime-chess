@@ -32,16 +32,16 @@ var Unit = {
         rocket.direction = this.direction;
         switch (this.direction) {
             case UnitConstants.LEFT_DIRECTION: // выстрел влево
-                rocket.pos_x = this.pos_x - 40;
+                rocket.pos_x = this.pos_x - 80;
                 break;
-            case UnitConstants.RIGHT_DIRECTION: // выстре вправо
-                rocket.pos_x = this.pos_x + 40;
+            case UnitConstants.RIGHT_DIRECTION: // выстрел вправо
+                rocket.pos_x = this.pos_x + 80;
                 break;
             case UnitConstants.TOP_DIRECTION: // выстрел вверх
-                rocket.pos_y = this.pos_y - 40;
+                rocket.pos_y = this.pos_y - 80;
                 break;
             case UnitConstants.BOTTOM_DIRECTION: // выстрел вниз
-                rocket.pos_y = this.pos_y + 40;
+                rocket.pos_y = this.pos_y + 80;
                 break;
         }
         gameManager.units.push(rocket);
@@ -62,7 +62,7 @@ var Unit = {
 
 var Rocket = Unit.extend({
     speed:20,
-    tile_size:32,
+    tile_size:64,
     type:"rocket",
     draw: function (ctx) {
         spriteManager.drawSprite(ctx, "rocket", null, this.pos_x, this.pos_y,);

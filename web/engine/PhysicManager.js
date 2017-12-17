@@ -2,7 +2,7 @@
 /*var physicManager = {
  update: function (obj) {
 
- let nodeNum = k => Math.round(k / 32);
+ let nodeNum = k => Math.round(k / 64);
  let x = nodeNum(obj.pos_x);
  let y = nodeNum(obj.pos_y);
 
@@ -21,7 +21,7 @@
 class PhysicManager {
     update(obj) {
 
-        let nodeNum = k => Math.floor(k / 32);
+        let nodeNum = k => Math.floor(k / 64);
         let x = nodeNum(obj.pos_x);
         let y = nodeNum(obj.pos_y);
 

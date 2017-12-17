@@ -60,8 +60,8 @@ class AIManager {
                     nodeNum(hero.pos_x),
                     nodeNum(hero.pos_y));
 
-                let nodeToPosX = x => x * 32 + Math.floor(32 / 2);
-                let nodeToPosY = y => y * 32 + Math.floor(32 / 2);
+                let nodeToPosX = x => x * 64 + Math.floor(64 / 2);
+                let nodeToPosY = y => y * 64 + Math.floor(64 / 2);
 
                 roteToHero.shift();
 
@@ -76,7 +76,7 @@ class AIManager {
 
     heroIsCloseToEnemy(hero, enemy) {
         return Math.sqrt(Math.pow(enemy.pos_x - hero.pos_x, 2)
-                + Math.pow(enemy.pos_y - hero.pos_y, 2)) < 32 * 6;
+                + Math.pow(enemy.pos_y - hero.pos_y, 2)) < 64 * 6;
     }
 
 }

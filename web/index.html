@@ -28,20 +28,20 @@
 
 
   <script>
-    function lunch() {
+    function runGame() {
         gameManager.play('/json/' + map);
         document.getElementById('canvas').style.display='block';
         document.getElementById('menu').style.display='none';
     }
   </script>
 
-  <div id="menu" style="width: 500px; height: 500px; background: #5f9929; display: block">
-    <a href="#" onclick="lunch()"><h1>Start game</h1></a>
+  <div id="menu" style="width: 500px; height: 500px; background: #dddddd; display: block">
+    <a href="#" onclick="runGame()" style="text-align: center"><h1>Begin!</h1></a>
   </div>
 
   <script>
       if(map=="map2.json"){
-          lunch();
+          runGame();
       }
   </script>
 

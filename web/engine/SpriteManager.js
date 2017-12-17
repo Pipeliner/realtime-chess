@@ -46,7 +46,7 @@ var spriteManager = {
         this.angles.set('-1' + '0', 180);
         this.angles.set('-1' + '-1', 225);
         this.angles.set('0' + '-1', 280);
-        this.angles.set('1' + '-1', 325);
+        this.angles.set('1' + '-1', 645);
     },
 
 
