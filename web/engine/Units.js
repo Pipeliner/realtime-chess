@@ -54,18 +54,19 @@ var Unit = {
 
         rocket.direction = direction;
         console.log("direction: ", direction);
+        const ROCKET_INITIAL_OFFSET = 50;
         switch (direction) {
             case UnitConstants.LEFT_DIRECTION: // выстрел влево
-                rocket.pos_x = this.pos_x - 80;
+                rocket.pos_x = this.pos_x - ROCKET_INITIAL_OFFSET;
                 break;
             case UnitConstants.RIGHT_DIRECTION: // выстрел вправо
-                rocket.pos_x = this.pos_x + 80;
+                rocket.pos_x = this.pos_x + ROCKET_INITIAL_OFFSET;
                 break;
             case UnitConstants.TOP_DIRECTION: // выстрел вверх
-                rocket.pos_y = this.pos_y - 80;
+                rocket.pos_y = this.pos_y - ROCKET_INITIAL_OFFSET;
                 break;
             case UnitConstants.BOTTOM_DIRECTION: // выстрел вниз
-                rocket.pos_y = this.pos_y + 80;
+                rocket.pos_y = this.pos_y + ROCKET_INITIAL_OFFSET;
                 break;
         }
         gameManager.units.push(rocket);
