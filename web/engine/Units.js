@@ -127,7 +127,7 @@ var Rocket = Unit.extend({
 var Hero = Unit.extend({
     name: "hero",
     type:"hero",
-    speed: 3,
+    speed: 6,
 
     draw: function (ctx) {// прорисовка объекта
         spriteManager.drawSprite(ctx, this.type, null, this.pos_x, this.pos_y);
