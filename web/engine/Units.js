@@ -111,7 +111,7 @@ var Rocket = Unit.extend({
     onTouchEntity: function (objectOnAWay) {
         this.kill();
         objectOnAWay.kill();
-        soundManager.play('/music/bom.mp3', {looping: false, volume: 0.2});
+        soundManager.play('/music/explosion.mp3', {looping: false, volume: 0.4});
 
     },
     onTouchMap: function (idx) {
@@ -146,7 +146,7 @@ var Hero = Unit.extend({
     //We can eat enemy pieces!
     onTouchEntity: function (objectOnAWay) {
         objectOnAWay.kill();
-        soundManager.play('/music/bom.mp3', {looping: false, volume: 0.2});
+        soundManager.play('/music/explosion.mp3', {looping: false, volume: 0.4});
     },
 
     //100% from metoda
