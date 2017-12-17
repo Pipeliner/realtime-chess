@@ -8,7 +8,9 @@ var UnitConstants = {
     TOP_DIRECTION: "top",
     BOTTOM_DIRECTION: "bottom",
     RIGHT_DIRECTION: "right",
-    LEFT_DIRECTION: "left"
+    LEFT_DIRECTION: "left",
+
+    DELAY_BETWEEN_SHOTS: 15
 };
 
 
@@ -23,14 +25,36 @@ var Unit = {
     state: UnitConstants.IDLE_STATE,
 
     //100% from metoda
-    fire: function () {
+    fire: function (fire_type) {
+        console.log("fire_type: ", fire_type);
         let rocket = Object.create(Rocket);
         rocket.name = 'rocket' + (++gameManager.fireNum);
         soundManager.play('/music/fire.mp3', {looping: false, volume: 1});
         rocket.pos_x = this.pos_x;
         rocket.pos_y = this.pos_y;
-        rocket.direction = this.direction;
-        switch (this.direction) {
+        var direction;
+        console.log("AIManager.ATTACK_LEFT_TYPE: ", AIAction.ATTACK_LEFT_TYPE);
+        switch(fire_type) {
+            case AIAction.ATTACK_LEFT_TYPE:
+                direction = UnitConstants.LEFT_DIRECTION;
+                break;
+
+            case AIAction.ATTACK_RIGHT_TYPE:
+                direction = UnitConstants.RIGHT_DIRECTION;
+                break;
+
+            case AIAction.ATTACK_UP_TYPE:
+                direction = UnitConstants.TOP_DIRECTION;
+                break;
+
+            case AIAction.ATTACK_DOWN_TYPE:
+                direction = UnitConstants.BOTTOM_DIRECTION;
+                break;
+        }
+
+        rocket.direction = direction;
+        console.log("direction: ", direction);
+        switch (direction) {
             case UnitConstants.LEFT_DIRECTION: // выстрел влево
                 rocket.pos_x = this.pos_x - 80;
                 break;
@@ -61,8 +85,8 @@ var Unit = {
 
 
 var Rocket = Unit.extend({
-    speed:20,
-    tile_size:64,
+    speed: 15,
+    tile_size: 64,
     type:"rocket",
     draw: function (ctx) {
         spriteManager.drawSprite(ctx, "rocket", null, this.pos_x, this.pos_y,);
@@ -108,7 +132,7 @@ var Hero = Unit.extend({
     draw: function (ctx) {// прорисовка объекта
         spriteManager.drawSprite(ctx, this.type, null, this.pos_x, this.pos_y);
     },
-    
+
     update: function (eventsManager, mapManager, hero) {
         if (eventsManager.action["up"]) this.pos_y = this.pos_y + (-1 * this.speed);
         if (eventsManager.action["down"]) this.pos_y = this.pos_y + (+1 * this.speed);
@@ -144,28 +168,28 @@ var Enemy = Unit.extend({
     update: function (eventsManager, mapManager, hero) {
         physicManager.update(this);
 
-        let aiManager = new AIManager(mapManager.xCount,//let-js6
+        let aiManager = new AIManager(mapManager.xCount,
             mapManager.yCount,
             mapManager.tSize.x);
 
-        let doIt = aiManager.directEnemy(this, hero);//directEnemy- reshaet shto budet delet tanchik
+        let nextStep = aiManager.directEnemy(this, hero);
 
-        if (doIt === AIAction.ATTACK) {
+        if (AIAction.ATTACK.includes(nextStep)) {
             this.state = UnitConstants.SHOOTING_STATE;
-            if(this.lastFire%10 ==0){
-                this.fire();
+            if (this.lastFire % UnitConstants.DELAY_BETWEEN_SHOTS == 0) {
+                this.fire(nextStep.type);
             }
             this.lastFire=this.lastFire+1;
             return;
         }
 
-        if (doIt.type === AIAction.WANDER_THE_MAP_TYPE ) {
-            this.route = doIt.route;
+        if (nextStep.type === AIAction.WANDER_THE_MAP_TYPE) {
+            this.route = nextStep.route;
             this.state = UnitConstants.MOVING_STATE;
         }
 
-        if(doIt.type === AIAction.GO_CLOSER_TO_HERO_TYPE){
-            this.route = doIt.route;
+        if (nextStep.type === AIAction.GO_CLOSER_TO_HERO_TYPE) {
+            this.route = nextStep.route;
             this.state = UnitConstants.MOVING_STATE;
         }
 
@@ -176,9 +200,9 @@ var Enemy = Unit.extend({
             }
 
             let nodeToPosX = x => x * mapManager.tSize.x + Math.floor(mapManager.tSize.x / 2);
-            let nodeToPosY = y => y * mapManager.tSize.y + Math.floor(mapManager.tSize.y / 2);//perevodiat kvadrati v pikseli
+            let nodeToPosY = y => y * mapManager.tSize.y + Math.floor(mapManager.tSize.y / 2);
 
-            //proveriam doshli li mi do kvadratika ....
+            // дошли до нужного квадрата?
             if (nodeToPosX(this.route[0].x) === this.pos_x
                 && nodeToPosY(this.route[0].y) === this.pos_y) {
                 this.route.shift();
@@ -218,9 +242,10 @@ var Enemy = Unit.extend({
         }
 
     },
-    onTouchEntity: function (obj) {
 
+    onTouchEntity: function (obj) {
     },
+
     kill: function () {
         gameManager.kill(this);
     },
