@@ -105,7 +105,7 @@ var Hero = Unit.extend({
     type:"hero",
     speed: 3,
     draw: function (ctx) {// прорисовка объекта
-        spriteManager.drawSprite(ctx, this.type, this.direction, this.pos_x, this.pos_y);
+        spriteManager.drawSprite(ctx, this.type, null, this.pos_x, this.pos_y);
     },
     update: function (eventsManager, mapManager, hero) {
 
@@ -163,7 +163,7 @@ var Enemy = Unit.extend({
     lastFire:10,
     draw: function (ctx) {
         // прорисовка объекта
-        spriteManager.drawSprite(ctx, this.type, this.direction, this.pos_x, this.pos_y);
+        spriteManager.drawSprite(ctx, this.type, null, this.pos_x, this.pos_y);
     },
     update: function (eventsManager, mapManager, hero) {
         physicManager.update(this);
