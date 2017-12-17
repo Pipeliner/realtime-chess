@@ -104,42 +104,18 @@ var Hero = Unit.extend({
     name: "hero",
     type:"hero",
     speed: 3,
+
     draw: function (ctx) {// прорисовка объекта
         spriteManager.drawSprite(ctx, this.type, null, this.pos_x, this.pos_y);
     },
+    
     update: function (eventsManager, mapManager, hero) {
-
-
-        if (eventsManager.action["fire"]) {
-            this.fire();
-        }
-
-        if (eventsManager.action["up"] || eventsManager.action["down"]) {
-            if (eventsManager.action["up"]) this.pos_y = this.pos_y + (-1 * this.speed);
-            if (eventsManager.action["down"]) this.pos_y = this.pos_y + (+1 * this.speed);
-
-            if (eventsManager.action["up"]) {
-                this.direction = UnitConstants.TOP_DIRECTION;
-            } else {
-                this.direction = UnitConstants.BOTTOM_DIRECTION;
-            }
-
-            return;
-        }
-
-
+        if (eventsManager.action["up"]) this.pos_y = this.pos_y + (-1 * this.speed);
+        if (eventsManager.action["down"]) this.pos_y = this.pos_y + (+1 * this.speed);
         if (eventsManager.action["left"]) this.pos_x = this.pos_x + (-1 * this.speed);
         if (eventsManager.action["right"]) this.pos_x = this.pos_x + (+1 * this.speed);
 
-        if (eventsManager.action["left"]) {
-            this.direction = UnitConstants.LEFT_DIRECTION;
-        } else if (eventsManager.action["right"]) {
-            this.direction = UnitConstants.RIGHT_DIRECTION;
-        }
-
-
-         physicManager.update(this);
-
+        physicManager.update(this);
     },
 
     //We can eat enemy pieces!

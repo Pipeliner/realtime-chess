@@ -2,30 +2,43 @@ var eventsManager = {
     bind: [], // сопоставление клавиш действиям
     action: [], // действия
 
-    //100% copied from metoda
     setup: function () { // настройка сопоставления
-        this.bind[38] = 'up'; // w - двигаться вверх
-        this.bind[37] = 'left'; // a - двигаться влево
-        this.bind[40] = 'down'; // s - двигаться вниз
-        this.bind[39] = 'right'; // d - двигаться вправо
-        this.bind[13] = 'fire'; // пробел - выстрелить
+        // стрелки
+        this.bind[38] = ['up'];   
+        this.bind[37] = ['left']; 
+        this.bind[40] = ['down']; 
+        this.bind[39] = ['right'];
+
+        this.bind[87] = ['up'];    // w - двигаться вверх
+        this.bind[65] = ['left'];  // a - двигаться влево
+        this.bind[83] = ['down'];  // s - двигаться вниз
+        this.bind[68] = ['right']; // d - двигаться вправо
+
+        this.bind[81] = ['up', 'left'];   // q - влево-вверх
+        this.bind[69] = ['up', 'right']   // e - вправо-вверх
+        this.bind[90] = ['down', 'left']  // z - вправо-вверх
+        this.bind[67] = ['down', 'right'] // c - вправо-вверх
+        
 
         // контроль событий клавиатуры
         document.body.addEventListener("keydown", this.onKeyDown);
         document.body.addEventListener("keyup", this.onKeyUp);
     },
-    //100% copied from metoda
+
     onKeyDown: function (event) {
-        var action = eventsManager.bind[event.keyCode];
-        if(action){
-            eventsManager.action[action] = true;
+        var actions = eventsManager.bind[event.keyCode];
+        if (actions){
+            for (const action of actions)
+                eventsManager.action[action] = true;
         }
 
     },
-    //100% copied from metoda
+
     onKeyUp: function (event) {
-        var action = eventsManager.bind[event.keyCode];
-        if (action)
-            eventsManager.action[action] = false; // отменили действие
+        var actions = eventsManager.bind[event.keyCode];
+        if (actions){
+            for (const action of actions)
+                eventsManager.action[action] = false;
+        }
     }
 };
