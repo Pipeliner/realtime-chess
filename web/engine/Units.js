@@ -26,14 +26,12 @@ var Unit = {
 
     //100% from metoda
     fire: function (fire_type) {
-        console.log("fire_type: ", fire_type);
         let rocket = Object.create(Rocket);
         rocket.name = 'rocket' + (++gameManager.fireNum);
         soundManager.play('/music/fire.mp3', {looping: false, volume: 1});
         rocket.pos_x = this.pos_x;
         rocket.pos_y = this.pos_y;
         var direction;
-        console.log("AIManager.ATTACK_LEFT_TYPE: ", AIAction.ATTACK_LEFT_TYPE);
         switch(fire_type) {
             case AIAction.ATTACK_LEFT_TYPE:
                 direction = UnitConstants.LEFT_DIRECTION;
@@ -53,7 +51,6 @@ var Unit = {
         }
 
         rocket.direction = direction;
-        console.log("direction: ", direction);
         const ROCKET_INITIAL_OFFSET = 50;
         switch (direction) {
             case UnitConstants.LEFT_DIRECTION: // выстрел влево
