@@ -28,7 +28,7 @@ var Unit = {
     fire: function (fire_type) {
         let rocket = Object.create(Rocket);
         rocket.name = 'rocket' + (++gameManager.fireNum);
-        soundManager.play('/music/fire.mp3', {looping: false, volume: 1});
+        soundManager.play('music/fire.mp3', {looping: false, volume: 1});
         rocket.pos_x = this.pos_x;
         rocket.pos_y = this.pos_y;
         var direction;
@@ -108,7 +108,7 @@ var Rocket = Unit.extend({
     onTouchEntity: function (objectOnAWay) {
         this.kill();
         objectOnAWay.kill();
-        soundManager.play('/music/explosion.mp3', {looping: false, volume: 0.4});
+        soundManager.play('music/explosion.mp3', {looping: false, volume: 0.4});
 
     },
     onTouchMap: function (idx) {
@@ -143,7 +143,7 @@ var Hero = Unit.extend({
     //We can eat enemy pieces!
     onTouchEntity: function (objectOnAWay) {
         objectOnAWay.kill();
-        soundManager.play('/music/explosion.mp3', {looping: false, volume: 0.4});
+        soundManager.play('music/explosion.mp3', {looping: false, volume: 0.4});
     },
 
     //100% from metoda

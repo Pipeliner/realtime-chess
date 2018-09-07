@@ -93,10 +93,10 @@ var gameManager = { // менеджер игры
     //100% copied from metoda
     loadAll: function (mapName) {
         soundManager.init();
-        soundManager.loadArray(['/music/soundtrack.mp3', '/music/fire.mp3','/music/explosion.mp3']);
-        soundManager.play('/music/soundtrack.mp3', {looping: true, volume: 1});
+        soundManager.loadArray(['music/soundtrack.mp3', 'music/fire.mp3','music/explosion.mp3']);
+        soundManager.play('music/soundtrack.mp3', {looping: true, volume: 1});
         mapManager.loadMap(mapName); // загрузка карты
-        spriteManager.loadAtlas("/json/atlas.json", "img/atlas/atlas.png"); // загрузка атласа
+        spriteManager.loadAtlas("json/atlas.json", "img/atlas/atlas.png"); // загрузка атласа
         spriteManager.init();
         gameManager.factory['hero'] = Hero; // инициализация фабрики
         gameManager.factory['enemy'] = Enemy;

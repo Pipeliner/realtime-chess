@@ -21,22 +21,22 @@
       else
         map = "map.json"
   </script>
-  <script src="/engine/GameSettings.js"></script>
-  <script src="/engine/MapManager.js"></script>
-  <script src="/engine/RouteManager.js"></script>
-  <script src="/engine/AIManager.js"></script>
-  <script src="/engine/SpriteManager.js"></script>
-  <script src="/engine/EventsManager.js"></script>
-  <script src="/engine/PhysicManager.js"></script>
-  <script src="/engine/SoundManager.js"></script>
-  <script src="/engine/GameManager.js"></script>
-  <script src="/engine/Units.js"></script>
-  <script src="/engine.js"></script>
+  <script src="engine/GameSettings.js"></script>
+  <script src="engine/MapManager.js"></script>
+  <script src="engine/RouteManager.js"></script>
+  <script src="engine/AIManager.js"></script>
+  <script src="engine/SpriteManager.js"></script>
+  <script src="engine/EventsManager.js"></script>
+  <script src="engine/PhysicManager.js"></script>
+  <script src="engine/SoundManager.js"></script>
+  <script src="engine/GameManager.js"></script>
+  <script src="engine/Units.js"></script>
+  <script src="engine.js"></script>
 
 
   <script>
     function runGame() {
-        gameManager.play('/json/' + map);
+        gameManager.play('json/' + map);
         document.getElementById('canvas').style.display='block';
         document.getElementById('menu').style.display='none';
     }
