@@ -35,16 +35,6 @@ class AIManager {
         return Math.floor(pixel_coordinate / this.tile_size);
     }
 
-    routeIsStraight(from_x, from_y, to_x, to_y) {
-        if (from_x === to_x) {
-            return true;
-        }
-        if (from_y === to_y) {
-            return true;
-        }
-        return false;
-    };
-
     directEnemy(enemy, hero) {
         var nodeNum = (pixel_coordinate) => this.nodeNum(pixel_coordinate);
 

@@ -123,9 +123,6 @@ var Rocket = Unit.extend({
         soundManager.play('music/explosion.mp3', {looping: false, volume: 0.4});
 
     },
-    onTouchMap: function (idx) {
-        this.kill();
-    },
 
     onLeftGameView: function() {
         this.kill();
@@ -137,8 +134,6 @@ var Rocket = Unit.extend({
 
 });
 
-
-//80% inspired by metoda
 var Hero = Unit.extend({
     name: "hero",
     type:"hero",
@@ -163,7 +158,6 @@ var Hero = Unit.extend({
         soundManager.play('music/explosion.mp3', {looping: false, volume: 0.4});
     },
 
-    //100% from metoda
     kill: function () {
         gameManager.kill(this);
     },

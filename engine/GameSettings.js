@@ -20,7 +20,7 @@ class GameSettings {
             this.onLevelCompleted();
         }
         if (heroCount === 0) {
-            this.onLevelLoosed();
+            this.onLevelLost();
         }
     }
 
@@ -29,7 +29,7 @@ class GameSettings {
 
         gameManager.stop();
         this.win = false;
-        if (map == "map.json") {
+        if (map === "map.json") {
             alert("win");
             window.location.href = '?map=map2.json';
         } else {
@@ -80,7 +80,7 @@ class GameSettings {
 
     }
 
-    onLevelLoosed() {
+    onLevelLost() {
         gameManager.stop();
         alert("You've lost!");
         window.location.href = '?map=map.json';
