@@ -15,9 +15,9 @@ var eventsManager = {
         this.bind[68] = ['right']; // d - двигаться вправо
 
         this.bind[81] = ['up', 'left'];   // q - влево-вверх
-        this.bind[69] = ['up', 'right']   // e - вправо-вверх
-        this.bind[90] = ['down', 'left']  // z - вправо-вверх
-        this.bind[67] = ['down', 'right'] // c - вправо-вверх
+        this.bind[69] = ['up', 'right'];   // e - вправо-вверх
+        this.bind[90] = ['down', 'left'];  // z - вправо-вверх
+        this.bind[67] = ['down', 'right']; // c - вправо-вверх
         
 
         // контроль событий клавиатуры

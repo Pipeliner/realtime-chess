@@ -69,6 +69,18 @@ var Unit = {
         gameManager.units.push(rocket);
     },
 
+    returnToView: function() {
+        if (this.pos_x < 0)
+            this.pos_x = 0;
+        if (this.pos_x > 500) // TODO a const here
+            this.pos_x = 500;
+
+        if (this.pos_y < 0)
+            this.pos_y = 0;
+        if (this.pos_y > 500) // TODO a const here
+            this.pos_y = 500;
+    },
+
     extend: function (extendProto) { // расширение сущности
         var object = Object.create(this); // создание нового объекта
         for (var property in extendProto) { // для всех свойств нового объекта
@@ -114,6 +126,11 @@ var Rocket = Unit.extend({
     onTouchMap: function (idx) {
         this.kill();
     },
+
+    onLeftGameView: function() {
+        this.kill();
+    },
+
     kill: function () {
         gameManager.kill(this);
     }
@@ -151,7 +168,7 @@ var Hero = Unit.extend({
         gameManager.kill(this);
     },
 
-
+    onLeftGameView: Unit.returnToView,
 });
 
 var Enemy = Unit.extend({
@@ -243,6 +260,8 @@ var Enemy = Unit.extend({
 
     onTouchEntity: function (obj) {
     },
+
+    onLeftGameView: Unit.returnToView,
 
     kill: function () {
         gameManager.kill(this);
