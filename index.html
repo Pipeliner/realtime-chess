@@ -3,6 +3,19 @@
   <head>
     <meta charset="utf-8"/>
     <title>Realtime chess</title>
+    <script src="https://www.gstatic.com/firebasejs/5.7.2/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAD_fTi_8-OWUANVwKW7d-4edwLx2Fs2LQ",
+        authDomain: "rtchess-748b8.firebaseapp.com",
+        databaseURL: "https://rtchess-748b8.firebaseio.com",
+        projectId: "rtchess-748b8",
+        storageBucket: "rtchess-748b8.appspot.com",
+        messagingSenderId: "725006416125"
+      };
+      firebase.initializeApp(config);
+    </script>
   </head>
   <body>
 
@@ -36,16 +49,22 @@
 
   <script>
     function runGame() {
+      // If we start right away, we end up breaking Firebase loading on Firefox somehow (WTF?)
+      // So we wait for it to appear
+      if (typeof firebase !== "undefined") {
         gameManager.play('json/' + map);
-        document.getElementById('canvas').style.display='block';
-        document.getElementById('menu').style.display='none';
+        document.getElementById('canvas').style.display = 'block';
+        document.getElementById('menu').style.display = 'none';
+      } else {
+        setTimeout(runGame, 10);
+      }
     }
   </script>
 
   <div id="menu" style="width: 500px; height: 500px; background: #dddddd; display: block">
     <h1 style="text-align: center">You are the King, and you are surrounded by hostile Rooks. Eat them to win!</h1>
 
-    <a href="#" onclick="runGame()" style="text-align: center"><h1>Begin!</h1></a>
+    <a href="javascript:;" onclick="runGame()" style="text-align: center"><h1>Begin!</h1></a>
     <br>
     <pre style="text-align: center; font-size: 20px">
  Controls: 

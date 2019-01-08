@@ -4,7 +4,8 @@ var gameManager = { // менеджер игры
     hero: null, // указатель на объект игрока
     enemy: null,
     laterKill: [], // отложенное уничтожение объектов
-    updateTimer:null,
+    updateTimer: null,
+    levelStartTime: 0,
 
     //100% metoda
     initHero: function (obj) { // инициализация игрока
@@ -72,10 +73,11 @@ var gameManager = { // менеджер игры
 
     play: function (mapName) {
         gameManager.loadAll(mapName);
+        this.levelStartTime = performance.now();
         this.updateTimer = setInterval(updateWorld, 100);
     },
 
-    stop(){
+    stop() {
         clearInterval(this.updateTimer);
     }
 };
