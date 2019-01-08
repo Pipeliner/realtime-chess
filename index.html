@@ -16,7 +16,7 @@
       const tokens = window.location.href.split("=");
 
       var map;
-      if (tokens.length == 2)
+      if (tokens.length === 2)
         map = tokens[1];
       else
         map = "map.json"
@@ -61,7 +61,7 @@ z   c
   </div>
 
   <script>
-      if(map=="map2.json"){
+      if (map === "map2.json"){
           runGame();
       }
   </script>

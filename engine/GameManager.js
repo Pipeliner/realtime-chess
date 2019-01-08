@@ -1,38 +1,3 @@
-
-var fs_global =null;
-
-function errorHandler(e) {
-    var msg = '';
-
-    switch (e.code) {
-        case FileError.QUOTA_EXCEEDED_ERR:
-            msg = 'QUOTA_EXCEEDED_ERR';
-            break;
-        case FileError.NOT_FOUND_ERR:
-            msg = 'NOT_FOUND_ERR';
-            break;
-        case FileError.SECURITY_ERR:
-            msg = 'SECURITY_ERR';
-            break;
-        case FileError.INVALID_MODIFICATION_ERR:
-            msg = 'INVALID_MODIFICATION_ERR';
-            break;
-        case FileError.INVALID_STATE_ERR:
-            msg = 'INVALID_STATE_ERR';
-            break;
-        default:
-            msg = 'Unknown Error';
-            break;
-    }
-    ;
-
-    console.log('Error: ' + msg);
-}
-function onInitFs(fs) {
-    fs_global = fs;
-}
-
-//80% inspired by metoda
 var gameManager = { // менеджер игры
     factory: {}, // фабрика объектов на карте
     units: [], // объекты на карте
@@ -103,11 +68,8 @@ var gameManager = { // менеджер игры
         mapManager.parseEntities(); // разбор сущностей карты
         mapManager.draw(ctx); // отобразить карту
         eventsManager.setup(); // настройка событий
-
-
-        //get access to files on pc
-        window.webkitRequestFileSystem(window.TEMPORARY, 1024 * 1024, onInitFs, errorHandler);
     },
+
     play: function (mapName) {
         gameManager.loadAll(mapName);
         this.updateTimer = setInterval(updateWorld, 100);
